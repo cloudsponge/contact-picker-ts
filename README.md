@@ -13,9 +13,9 @@ npm install contact-picker
 Check if Contacts API is supported:
 
 ```js
-import { contactPickerSupported } from 'contact-picker';
+import { isSupported } from 'contact-picker';
 
-if (contactPickerSupported()) {
+if (isSupported()) {
   // Contacts API supported
 }
 ```
@@ -23,19 +23,19 @@ if (contactPickerSupported()) {
 Get available properties:
 
 ```js
-import { contactPickerGetProperties } from 'contact-picker';
+import { getProperties } from 'contact-picker';
 
-const props = await contactPickerGetProperties();
+const props = await getProperties();
 ```
 
 Bind picker to button:
 
 ```js
-import { contactPickerBindTo } from 'contact-picker';
+import { bindTo } from 'contact-picker';
 
 const button = document.getElementById('pick-contact');
 
-contactPickerBindTo(button, {
+bindTo(button, {
   callback: contacts => {
     // contacts selected
   }
@@ -49,7 +49,7 @@ Check if Contacts API is supported:
 ```js
 const contactPicker = require('contact-picker');
 
-if (contactPicker.contactPickerSupported()) {
+if (contactPicker.isSupported()) {
   // Contacts API supported
 }
 ```
@@ -59,7 +59,7 @@ Get available properties:
 ```js
 const contactPicker = require('contact-picker');
 
-const props = await contactPicker.contactPickerGetProperties();
+const props = await contactPicker.getProperties();
 ```
 
 Bind picker to button:
@@ -69,7 +69,7 @@ const contactPicker = require('contact-picker');
 
 const button = document.getElementById('pick-contact');
 
-contactPicker.contactPickerBindTo(button, {
+contactPicker.bindTo(button, {
   callback: contacts => {
     // contacts selected
   }
@@ -78,19 +78,19 @@ contactPicker.contactPickerBindTo(button, {
 
 ## API
 
-### contactPickerSupported()
+### isSupported()
 
 Checks if Contacts API is supported in the browser.
 
 Returns true or false.
 
-### contactPickerGetProperties()
+### getProperties()
 
 Gets the available contact properties that can be requested.
 
 Returns a Promise resolving to an array of property keys like ['name', 'email'].
 
-### contactPickerBindTo(element, options)
+### bindTo(element, options)
 
 Binds contact picker invocation to an element's click event.
 

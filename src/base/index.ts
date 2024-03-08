@@ -69,14 +69,23 @@ export function isSupported(opts: IExtra['conf']['errors'] = { silence: true }):
 
 /**
  * Binds the contact picker API to the provided element, with optional configuration.
- * Checks for HTTPS and browser support, then adds a click handler to get contacts.
+ * Checks for HTTPS and browser support, then adds a event handler to get contacts.
  * Passes configuration and callback to getContacts() helper.
  */
-export function bindTo(el: HTMLElement, extra: IExtra): void {
+export function eventBind(el: HTMLElement, event: string, extra: IExtra): void {
   const silence = !!extra?.conf?.errors?.silence;
   isHttps({ silence });
   isSupported({ silence });
-  el.addEventListener('click', async () => await getContacts(extra?.conf, extra?.callback));
+  el.addEventListener(event, async () => await getContacts(extra?.conf, extra?.callback));
+}
+
+/**
+ * Binds the contact picker API to the provided element, with optional configuration.
+ * Checks for HTTPS and browser support, then adds a click handler to get contacts.
+ * Passes configuration and callback to getContacts() helper.
+ */
+export function clickBind(el: HTMLElement, extra: IExtra): void {
+  return eventBind(el, 'click', extra);
 }
 
 /**
@@ -89,4 +98,4 @@ export async function getProperties(): Promise<ContactManagerProps> {
   return await navigator.contacts.getProperties();
 }
 
-export default { getProperties, isSupported, bindTo };
+export default { getProperties, isSupported, eventBind, clickBind };

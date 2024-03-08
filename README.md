@@ -8,6 +8,10 @@ A simple utility to pick contacts using the Contacts API in the browser.
 npm install contact-picker-ts
 ```
 
+## Examples
+
+You can check an React app example in `/examples` folder.
+
 ## Usage ESM
 
 Check if Contacts API is supported:
@@ -121,6 +125,12 @@ Returns a Promise resolving to the array of selected contacts.
 ## References
 
 https://www.cloudsponge.com/blog/mobile-address-book-and-contact-picker-api-experiment/
+
+## Authors
+
+[@aribeiro](https://github.com/aribeiro)
+
+[@cloudsponge](https://github.com/cloudsponge)
 
 ## Browser Compatibility
 

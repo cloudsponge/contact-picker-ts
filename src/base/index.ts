@@ -12,7 +12,7 @@ declare global {
  * @param opts - The configuration options.
  * @returns Whether HTTPS is being used.
  */
-function contactPickerIsHttps(opts: IExtra['conf']['errors']): boolean {
+function isHttps(opts: IExtra['conf']['errors']): boolean {
   if (!opts || typeof opts !== 'object') {
     throw new Error('Invalid opts parameter');
   }
@@ -40,7 +40,7 @@ async function getContacts(conf?: IExtra['conf'], callback?: IExtra['callback'])
     throw new Error('Invalid callback parameter');
   }
 
-  if (!contactPickerSupported({ silence: conf?.errors?.silence || true })) return;
+  if (!isSupported({ silence: conf?.errors?.silence || true })) return;
 
   const props = conf?.props || ['name', 'email', 'tel', 'address', 'icon'];
   const options = conf?.options || { multiple: true };
@@ -57,7 +57,7 @@ async function getContacts(conf?: IExtra['conf'], callback?: IExtra['callback'])
  * @param opts - Options to control error handling.
  * @returns True if contact picker is supported, false otherwise.
  */
-export function contactPickerSupported(opts: IExtra['conf']['errors'] = { silence: true }): boolean {
+export function isSupported(opts: IExtra['conf']['errors'] = { silence: true }): boolean {
   if (!opts || typeof opts !== 'object') {
     throw new Error('Invalid opts parameter');
   }
@@ -72,10 +72,10 @@ export function contactPickerSupported(opts: IExtra['conf']['errors'] = { silenc
  * Checks for HTTPS and browser support, then adds a click handler to get contacts.
  * Passes configuration and callback to getContacts() helper.
  */
-export function contactPickerBindTo(el: HTMLElement, extra: IExtra): void {
+export function bindTo(el: HTMLElement, extra: IExtra): void {
   const silence = !!extra?.conf?.errors?.silence;
-  contactPickerIsHttps({ silence });
-  contactPickerSupported({ silence });
+  isHttps({ silence });
+  isSupported({ silence });
   el.addEventListener('click', async () => await getContacts(extra?.conf, extra?.callback));
 }
 
@@ -84,9 +84,9 @@ export function contactPickerBindTo(el: HTMLElement, extra: IExtra): void {
  * Checks that the API is supported before getting properties.
  * Returns a Promise resolving to the supported properties.
  */
-export async function contactPickerGetProperties(): Promise<ContactManagerProps> {
-  contactPickerSupported();
+export async function getProperties(): Promise<ContactManagerProps> {
+  isSupported();
   return await navigator.contacts.getProperties();
 }
 
-export default { contactPickerGetProperties, contactPickerSupported, contactPickerBindTo };
+export default { getProperties, isSupported, bindTo };

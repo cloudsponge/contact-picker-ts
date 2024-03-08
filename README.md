@@ -5,7 +5,7 @@ A simple utility to pick contacts using the Contacts API in the browser.
 ## Installation
 
 ```
-npm install contact-picker
+npm install contact-picker-ts
 ```
 
 ## Usage ESM
@@ -13,7 +13,7 @@ npm install contact-picker
 Check if Contacts API is supported:
 
 ```js
-import { isSupported } from 'contact-picker';
+import { isSupported } from 'contact-picker-ts';
 
 if (isSupported()) {
   // Contacts API supported
@@ -23,7 +23,7 @@ if (isSupported()) {
 Get available properties:
 
 ```js
-import { getProperties } from 'contact-picker';
+import { getProperties } from 'contact-picker-ts';
 
 const props = await getProperties();
 ```
@@ -31,11 +31,11 @@ const props = await getProperties();
 Bind picker to button:
 
 ```js
-import { bindTo } from 'contact-picker';
+import { clickBind } from 'contact-picker-ts';
 
 const button = document.getElementById('pick-contact');
 
-bindTo(button, {
+clickBind(button, {
   callback: contacts => {
     // contacts selected
   }
@@ -47,7 +47,7 @@ bindTo(button, {
 Check if Contacts API is supported:
 
 ```js
-const contactPicker = require('contact-picker');
+const contactPicker = require('contact-picker-ts');
 
 if (contactPicker.isSupported()) {
   // Contacts API supported
@@ -57,19 +57,19 @@ if (contactPicker.isSupported()) {
 Get available properties:
 
 ```js
-const contactPicker = require('contact-picker');
+const contactPicker = require('contact-picker-ts');
 
 const props = await contactPicker.getProperties();
 ```
 
-Bind picker to button:
+Bind picker to input:
 
 ```js
-const contactPicker = require('contact-picker');
+const contactPicker = require('contact-picker-ts');
 
-const button = document.getElementById('pick-contact');
+const input = document.getElementById('pick-contact-input');
 
-contactPicker.bindTo(button, {
+contactPicker.eventBind(input, 'focus', {
   callback: contacts => {
     // contacts selected
   }
@@ -90,7 +90,16 @@ Gets the available contact properties that can be requested.
 
 Returns a Promise resolving to an array of property keys like ['name', 'email'].
 
-### bindTo(element, options)
+### eventBind(element, event ,options)
+
+Binds contact picker invocation to an element's event.
+
+- element - The element to bind the event handler to
+- event - The event to trigger the action
+- options - Options like callback
+  - callback - Callback when contacts are selected
+
+### clickBind(element, options)
 
 Binds contact picker invocation to an element's click event.
 
@@ -108,6 +117,10 @@ Directly invokes the contact picker API to get contacts.
   - callback - Callback when contacts are selected
 
 Returns a Promise resolving to the array of selected contacts.
+
+## References
+
+https://www.cloudsponge.com/blog/mobile-address-book-and-contact-picker-api-experiment/
 
 ## Browser Compatibility
 

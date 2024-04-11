@@ -1,6 +1,7 @@
 {
-  "name": "contact-picker-ts",
-  "version": "1.0.0",
+  "name": "@cloudsponge/contact-picker-ts",
+  "version": "1.0.1",
+  "private": false,
   "description": "MDN Contact Picker API Wrapper",
   "main": "build/cjs/index.js",
   "module": "build/esm/index.js",
@@ -9,6 +10,10 @@
     "src",
     "build"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudsponge/contact-picker-ts.git"
+  },
   "exports": {
     "require": "./build/cjs/index.js",
     "import": "./build/esm/index.js"

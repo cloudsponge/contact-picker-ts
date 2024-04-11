@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './App.css';
 import { Contact, cloudspongeContactsParser } from './utils';
-import { clickBind, eventBind } from 'contact-picker-ts';
+import { clickBind, eventBind } from '@cloudsponge/contact-picker-ts';
 
 function App() {
   useEffect(() => {

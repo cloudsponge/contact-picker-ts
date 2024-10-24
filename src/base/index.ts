@@ -31,7 +31,7 @@ function isHttps(opts: IExtra['conf']['errors']): boolean {
  * @param callback - Callback function to handle the results.
  * @returns Promise resolving to the selected contacts, or calls the callback.
  */
-async function getContacts(conf?: IExtra['conf'], callback?: IExtra['callback']) {
+export async function getContacts(conf?: IExtra['conf'], callback?: IExtra['callback']) {
   if (conf && typeof conf !== 'object') {
     throw new Error('Invalid conf parameter');
   }
@@ -98,4 +98,4 @@ export async function getProperties(): Promise<ContactManagerProps> {
   return await navigator.contacts.getProperties();
 }
 
-export default { getProperties, isSupported, eventBind, clickBind };
+export default { getProperties, isSupported, eventBind, clickBind, getContacts };

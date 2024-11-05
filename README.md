@@ -5,7 +5,7 @@ A simple utility to pick contacts using the Contacts API in the browser.
 ## Installation
 
 ```
-npm install contact-picker-ts
+npm install @cloudsponge/contact-picker-ts
 ```
 
 ## Examples

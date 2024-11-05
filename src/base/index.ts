@@ -42,7 +42,7 @@ export async function getContacts(conf?: IExtra['conf'], callback?: IExtra['call
 
   if (!isSupported({ silence: conf?.errors?.silence || true })) return;
 
-  const props = conf?.props || ['name', 'email', 'tel', 'address', 'icon'];
+  const props = conf?.props || await getProperties();
   const options = conf?.options || { multiple: true };
 
   const contacts = await navigator.contacts.select(props, options);

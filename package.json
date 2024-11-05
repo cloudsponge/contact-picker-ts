@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@cloudsponge/contact-picker-ts",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "MDN Contact Picker API Wrapper",
   "main": "build/cjs/index.js",
   "module": "build/esm/index.js",
